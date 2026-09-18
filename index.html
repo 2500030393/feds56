@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Mithra</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f7fff9;
+            color: #243b2d;
+        }
+
+        header {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #18864b;
+        }
+
+        .logo span {
+            color: #f27632;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #18864b;
+        }
+
+        .login-btn,
+        .main-btn {
+            background: #18864b;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .login-btn:hover,
+        .main-btn:hover {
+            background: #116638;
+        }
+
+        .orange-btn {
+            background: #f27632;
+            margin-left: 10px;
+        }
+
+        .orange-btn:hover {
+            background: #d85d20;
+        }
+
+        .hero {
+            min-height: 470px;
+            display: flex;
+            align-items: center;
+            padding: 70px 8%;
+            background: linear-gradient(100deg, #e9fff0, #ffffff);
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            line-height: 1.15;
+            color: #146c3d;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            color: #f27632;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 28px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            background: white;
+            padding: 35px 7%;
+            box-shadow: 0 2px 8px #eee;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat h2 {
+            color: #18864b;
+            font-size: 28px;
+        }
+
+        .stat p {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        section {
+            padding: 60px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .section-title h2 {
+            color: #146c3d;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px #dce9df;
+        }
+
+        .card-icon {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #146c3d;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .green-section {
+            background: #eafff0;
+        }
+
+        .form-box {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px #d5e5da;
+        }
+
+        label {
+            display: block;
+            margin: 13px 0 7px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #18864b;
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .form-button {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .food-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .food-card {
+            background: white;
+            padding: 22px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px #dce9df;
+        }
+
+        .food-card h3 {
+            color: #18864b;
+            margin-bottom: 12px;
+        }
+
+        .food-card p {
+            color: #555;
+            margin: 7px 0;
+        }
+
+        .available {
+            color: #18864b !important;
+            font-weight: bold;
+        }
+
+        .request-btn {
+            margin-top: 12px;
+            padding: 9px 15px;
+        }
+
+        .about-box {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .contact {
+            background: #146c3d;
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            margin-bottom: 12px;
+        }
+
+        .contact p {
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background: #0d4f2c;
+            color: white;
+            text-align: center;
+            padding: 22px;
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                display: none;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .food-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .food-container {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .hero {
+                padding: 50px 7%;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+
+        <div class="logo">
+            Meal<span>Mithra</span>
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#how">How It Works</a>
+            <a href="#donate">Donate</a>
+            <a href="#find">Find Meals</a>
+            <a href="#request">Request</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <button class="login-btn" onclick="loginUser()">
+            Login
+        </button>
+
+    </header>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>
+                Share a Meal.<br>
+                <span>Spread Kindness.</span><br>
+                Reduce Waste.
+            </h1>
+
+            <p>
+                Meal Mithra connects people with extra food
+                to individuals and communities who need a meal.
+                Together, we can make sure good food reaches people
+                instead of being wasted.
+            </p>
+
+            <button class="main-btn" onclick="goToDonate()">
+                Donate a Meal
+            </button>
+
+            <button class="main-btn orange-btn" onclick="goToFind()">
+                Find a Meal
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- STATISTICS -->
+    <div class="stats">
+
+        <div class="stat">
+            <h2>1,500+</h2>
+            <p>Meals Shared</p>
+        </div>
+
+        <div class="stat">
+            <h2>420+</h2>
+            <p>Food Donors</p>
+        </div>
+
+        <div class="stat">
+            <h2>65+</h2>
+            <p>Partner Groups</p>
+        </div>
+
+        <div class="stat">
+            <h2>12+</h2>
+            <p>Communities</p>
+        </div>
+
+    </div>
+
+
+    <!-- HOW IT WORKS -->
+    <section id="how">
+
+        <div class="section-title">
+            <h2>How Meal Mithra Works</h2>
+            <p>Simple steps to share food with someone who needs it.</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="card-icon">🍱</div>
+
+                <h3>1. Share Food</h3>
+
+                <p>
+                    Add details about your extra food,
+                    quantity and pickup location.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">🔍</div>
+
+                <h3>2. Find a Meal</h3>
+
+                <p>
+                    Search for available meals
+                    in your nearby area.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">🤝</div>
+
+                <h3>3. Connect & Collect</h3>
+
+                <p>
+                    Donors and receivers connect
+                    and arrange food collection.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DONATE FOOD -->
+    <section class="green-section" id="donate">
+
+        <div class="section-title">
+
+            <h2>Donate a Meal</h2>
+
+            <p>
+                Have extra food? Share it through Meal Mithra.
+            </p>
+
+        </div>
+
+
+        <div class="form-box">
+
+            <label>Food Name</label>
+
+            <input
+                type="text"
+                id="foodName"
+                placeholder="Example: Vegetable Biryani"
+            >
+
+
+            <label>Food Type</label>
+
+            <select id="foodType">
+
+                <option>Vegetarian</option>
+
+                <option>Non-Vegetarian</option>
+
+                <option>Bakery</option>
+
+                <option>Fruits</option>
+
+                <option>Snacks</option>
+
+            </select>
+
+
+            <label>Quantity</label>
+
+            <input
+                type="number"
+                id="foodQuantity"
+                placeholder="Number of meals"
+            >
+
+
+            <label>Pickup Location</label>
+
+            <input
+                type="text"
+                id="foodLocation"
+                placeholder="Enter pickup location"
+            >
+
+
+            <label>Available Until</label>
+
+            <input
+                type="time"
+                id="availableTime"
+            >
+
+
+            <label>Contact Number</label>
+
+            <input
+                type="tel"
+                id="donorPhone"
+                placeholder="Enter contact number"
+            >
+
+
+            <button
+                class="main-btn form-button"
+                onclick="donateFood()"
+            >
+                Submit Food Donation
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- FIND FOOD -->
+    <section id="find">
+
+        <div class="section-title">
+
+            <h2>Available Meals</h2>
+
+            <p>
+                Find meals shared by generous donors.
+            </p>
+
+        </div>
+
+
+        <div class="food-container">
+
+
+            <div class="food-card">
+
+                <h3>🍚 Veg Biryani</h3>
+
+                <p>Type: Vegetarian</p>
+
+                <p>Quantity: 25 meals</p>
+
+                <p>Location: Vijayawada</p>
+
+                <p>Pickup: 1:00 PM</p>
+
+                <p class="available">● Available</p>
+
+                <button
+                    class="main-btn request-btn"
+                    onclick="selectMeal('Veg Biryani')"
+                >
+                    Request
+                </button>
+
+            </div>
+
+
+            <div class="food-card">
+
+                <h3>🥗 Veg Meals</h3>
+
+                <p>Type: Vegetarian</p>
+
+                <p>Quantity: 18 meals</p>
+
+                <p>Location: Guntur</p>
+
+                <p>Pickup: 2:30 PM</p>
+
+                <p class="available">● Available</p>
+
+                <button
+                    class="main-btn request-btn"
+                    onclick="selectMeal('Veg Meals')"
+                >
+                    Request
+                </button>
+
+            </div>
+
+
+            <div class="food-card">
+
+                <h3>🫓 Chapati Curry</h3>
+
+                <p>Type: Vegetarian</p>
+
+                <p>Quantity: 20 meals</p>
+
+                <p>Location: Mangalagiri</p>
+
+                <p>Pickup: 7:00 PM</p>
+
+                <p class="available">● Available</p>
+
+                <button
+                    class="main-btn request-btn"
+                    onclick="selectMeal('Chapati Curry')"
+                >
+                    Request
+                </button>
+
+            </div>
+
+
+            <div class="food-card">
+
+                <h3>🍎 Fruits & Bread</h3>
+
+                <p>Type: Bakery & Fruits</p>
+
+                <p>Quantity: 15 packets</p>
+
+                <p>Location: Vijayawada</p>
+
+                <p>Pickup: 6:00 PM</p>
+
+                <p class="available">● Available</p>
+
+                <button
+                    class="main-btn request-btn"
+                    onclick="selectMeal('Fruits & Bread')"
+                >
+                    Request
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- REQUEST FOOD -->
+    <section class="green-section" id="request">
+
+        <div class="section-title">
+
+            <h2>Request a Meal</h2>
+
+            <p>
+                Tell us what you need and we will connect you
+                with available food.
+            </p>
+
+        </div>
+
+
+        <div class="form-box">
+
+            <label>Your Name</label>
+
+            <input
+                type="text"
+                id="requestName"
+                placeholder="Enter your name"
+            >
+
+
+            <label>Organization / Group</label>
+
+            <input
+                type="text"
+                id="requestGroup"
+                placeholder="Enter organization or group name"
+            >
+
+
+            <label>Contact Number</label>
+
+            <input
+                type="tel"
+                id="requestPhone"
+                placeholder="Enter contact number"
+            >
+
+
+            <label>Required Meals</label>
+
+            <input
+                type="number"
+                id="requiredMeals"
+                placeholder="Number of meals required"
+            >
+
+
+            <label>Preferred Food</label>
+
+            <select id="preferredFood">
+
+                <option>Any Food</option>
+
+                <option>Vegetarian</option>
+
+                <option>Non-Vegetarian</option>
+
+                <option>Fruits</option>
+
+                <option>Bakery</option>
+
+            </select>
+
+
+            <label>Reason for Request</label>
+
+            <textarea
+                id="requestReason"
+                placeholder="Enter your requirement"
+            ></textarea>
+
+
+            <button
+                class="main-btn form-button"
+                onclick="submitRequest()"
+            >
+                Submit Meal Request
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+
+        <div class="section-title">
+
+            <h2>About Meal Mithra</h2>
+
+        </div>
+
+        <div class="about-box">
+
+            <p>
+                Meal Mithra is a food-sharing platform designed
+                to connect food donors with people who need meals.
+                Restaurants, households, events and individuals can
+                share surplus food through the platform.
+            </p>
+
+            <br>
+
+            <p>
+                Our goal is to reduce food wastage and encourage
+                people to share food with their community.
+                Every meal shared can make a small difference.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHY MEAL MITHRA -->
+    <section class="green-section">
+
+        <div class="section-title">
+
+            <h2>Why Meal Mithra?</h2>
+
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="card-icon">🌱</div>
+
+                <h3>Less Food Waste</h3>
+
+                <p>
+                    Surplus food can be shared instead of
+                    being thrown away.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">❤️</div>
+
+                <h3>Help People</h3>
+
+                <p>
+                    Connect available meals with
+                    people and communities in need.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">🌍</div>
+
+                <h3>Better Community</h3>
+
+                <p>
+                    Encourage kindness, sharing
+                    and responsible food use.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+
+        <h2>Connect With Meal Mithra</h2>
+
+        <p>
+            Want to help reduce food waste?
+            Join our food-sharing community.
+        </p>
+
+        <button
+            class="main-btn"
+            onclick="contactUs()"
+        >
+            Contact Us
+        </button>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>Meal Mithra — Share Food, Spread Kindness.</p>
+
+        <br>
+
+        <p>© 2026 Meal Mithra</p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        function loginUser() {
+
+            alert(
+                "Welcome to Meal Mithra!\n\n" +
+                "Login feature is ready for integration."
+            );
+
+        }
+
+
+        function goToDonate() {
+
+            document
+                .getElementById("donate")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }
+
+
+        function goToFind() {
+
+            document
+                .getElementById("find")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }
+
+
+        function donateFood() {
+
+            let foodName =
+                document.getElementById("foodName").value;
+
+            let quantity =
+                document.getElementById("foodQuantity").value;
+
+            let location =
+                document.getElementById("foodLocation").value;
+
+            let phone =
+                document.getElementById("donorPhone").value;
+
+
+            if (
+                foodName === "" ||
+                quantity === "" ||
+                location === "" ||
+                phone === ""
+            ) {
+
+                alert(
+                    "Please fill all required details."
+                );
+
+                return;
+            }
+
+
+            alert(
+                "Meal donation submitted successfully! 🎉\n\n" +
+                "Food: " + foodName +
+                "\nQuantity: " + quantity +
+                "\nLocation: " + location
+            );
+
+        }
+
+
+        function selectMeal(mealName) {
+
+            document
+                .getElementById("request")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+
+            alert(
+                mealName +
+                " selected successfully!"
+            );
+
+        }
+
+
+        function submitRequest() {
+
+            let name =
+                document.getElementById("requestName").value;
+
+            let phone =
+                document.getElementById("requestPhone").value;
+
+            let meals =
+                document.getElementById("requiredMeals").value;
+
+
+            if (
+                name === "" ||
+                phone === "" ||
+                meals === ""
+            ) {
+
+                alert(
+                    "Please enter your name, contact number and required meals."
+                );
+
+                return;
+            }
+
+
+            alert(
+                "Meal request submitted successfully! ❤️"
+            );
+
+        }
+
+
+        function contactUs() {
+
+            alert(
+                "Thank you for contacting Meal Mithra!\n\n" +
+                "We will connect with you soon."
+            );
+
+        }
+
+    </script>
+
+</body>
+</html>
