@@ -1,7 +1,6 @@
 // ===============================
 // SIGNUP
 // ===============================
-
 const signupForm = document.getElementById("signupForm");
 
 if (signupForm) {
